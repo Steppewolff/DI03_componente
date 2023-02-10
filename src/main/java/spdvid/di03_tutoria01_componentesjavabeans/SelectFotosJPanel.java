@@ -67,14 +67,12 @@ public class SelectFotosJPanel extends javax.swing.JPanel {
             String fileNames = "";
             for (File file : fileArray){
                 fileNames += file.getName() + "; ";
-//                FilePath[index++]=(file.getAbsolutePath());
             }
-//            txtRuta.setText("Se han adjuntado " + fileArray.length + " fotografías: " + fileNames);//guarda el path uno encima de otro, cambiar para que escriba una linea cada vez
             txtRuta.setText("Se han adjuntado " + fileArray.length + " fotografías: ");//guarda el path uno encima de otro, cambiar para que escriba una linea cada vez
             imagen = arrayFotos[0];
         }
         else{
-            lblError.setText("Ha ocurrido un error al sellecionar los archivos");
+            lblError.setText("Ha ocurrido un error al selecionar los archivos");
         }
     }//GEN-LAST:event_btnSeleccionarRutaActionPerformed
     

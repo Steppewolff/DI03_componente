@@ -27,20 +27,15 @@ public class ETVImageViewerPropertyEditorSupport extends PropertyEditorSupport{
         File[] images = selectFotos.getFotos();
         String path = "";
         for (int i = 0; i < images.length; i++){
-//            path += "\"" + images[i].getAbsolutePath() + "\",";
             path += "new File(\"" + images[i].getAbsolutePath() + "\"),";
         }
-//hacerlo aqui, en cada bucle del path, un new io.File("path")        
         path = (path.substring(0, path.length()-1));
         path = path.replace('\\', '/');
-//        return "new spdvid.di03_tutoria01_componentesjavabeans.SelectFotos("+"new java.io.File[]{" + path + "}";
         return "new spdvid.di03_tutoria01_componentesjavabeans.SelectFotos("+"new java.io.File[]{" + path + "})";
     }
-//declarar los objetos dentro del string? new java.io.File[]{new(java.io.File(""))" + 
+
     @Override
     public Object getValue() {
         return selectFotosJPanel.getSelectedFotos();
     }
-    
-    
 }
