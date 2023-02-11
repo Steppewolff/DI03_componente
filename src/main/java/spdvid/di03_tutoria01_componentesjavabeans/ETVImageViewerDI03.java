@@ -96,16 +96,17 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
             this.imagen = this.fotos[this.fotoActiva];
         }
     }
-    
-    public void timerFoto(){
-        
-    }
-    
+
     @Override
     public void actionPerformed(ActionEvent evt){
-        if (selectFotos != null){
-            fotos = selectFotos.getFotos();
-            imagen = fotos[0];
+        if (this.selectFotos != null){
+            this.fotos = selectFotos.getFotos();
+            if (this.fotoActiva == this.fotos.length-1){
+                this.fotoActiva = 0;
+            }else{
+                this.fotoActiva += 1;
+            }
+            this.imagen = this.fotos[this.fotoActiva];
         }
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -113,14 +114,9 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        if (selectFotos != null){
-//            fotos = selectFotos.getFotos();
-//            imagen = fotos[0];
-            if(imagen != null && imagen.exists()){
-                ImageIcon imageIcon = new ImageIcon (imagen.getAbsolutePath());
-                g.drawImage(imageIcon.getImage(), 0, 0, null);
-    //        g.drawImage(imageIcon.getImage(), 0, 0, WIDTH, HEIGHT, this)
-            }
+        if(imagen != null && imagen.exists()){
+            ImageIcon imageIcon = new ImageIcon (imagen.getAbsolutePath());
+            g.drawImage(imageIcon.getImage(), 0, 0, null);
         }
-//    }
+    }
 }
