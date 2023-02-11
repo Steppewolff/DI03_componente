@@ -1,10 +1,12 @@
 package spdvid.di03_tutoria01_componentesjavabeans;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
+import java.util.HashSet;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import spdvid.di03_tutoria01_componentesjavabeans.SelectFotos;
@@ -107,8 +109,10 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
                 this.fotoActiva += 1;
             }
             this.imagen = this.fotos[this.fotoActiva];
+
+            this.repaint();
         }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
@@ -116,7 +120,11 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
         super.paintComponent(g);
         if(imagen != null && imagen.exists()){
             ImageIcon imageIcon = new ImageIcon (imagen.getAbsolutePath());
+            Image image = imageIcon.getImage();
+            Image newimg = image.getScaledInstance(400, 300, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newImageIcon = new ImageIcon(newimg);
             g.drawImage(imageIcon.getImage(), 0, 0, null);
+//            g.drawImage(imageIcon.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT), 0, 0, null);
         }
     }
 }
