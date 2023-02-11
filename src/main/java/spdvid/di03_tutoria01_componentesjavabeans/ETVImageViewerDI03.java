@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -79,9 +81,9 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
         if (this.selectFotos != null){
             this.fotos = selectFotos.getFotos();
             if (this.fotoActiva == 0){
-                this.fotoActiva = this.fotos.length-1;
+                this.setFotoActiva(fotos.length-1);
             }else{
-                this.fotoActiva -= 1;
+                this.setFotoActiva(fotoActiva-1);
             }
             this.imagen = this.fotos[this.fotoActiva];
         }
@@ -91,9 +93,9 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
         if (this.selectFotos != null){
             this.fotos = selectFotos.getFotos();
             if (this.fotoActiva == this.fotos.length-1){
-                this.fotoActiva = 0;
+                this.setFotoActiva(0);
             }else{
-                this.fotoActiva += 1;
+                this.setFotoActiva(fotoActiva+1);
             }
             this.imagen = this.fotos[this.fotoActiva];
         }
@@ -104,15 +106,14 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
         if (this.selectFotos != null){
             this.fotos = selectFotos.getFotos();
             if (this.fotoActiva == this.fotos.length-1){
-                this.fotoActiva = 0;
+                this.setFotoActiva(0);
             }else{
-                this.fotoActiva += 1;
+                this.setFotoActiva(fotoActiva+1);
             }
             this.imagen = this.fotos[this.fotoActiva];
 
             this.repaint();
         }
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
@@ -123,8 +124,7 @@ public class ETVImageViewerDI03 extends JPanel implements Serializable,ActionLis
             Image image = imageIcon.getImage();
             Image newimg = image.getScaledInstance(400, 300, java.awt.Image.SCALE_SMOOTH);
             ImageIcon newImageIcon = new ImageIcon(newimg);
-            g.drawImage(imageIcon.getImage(), 0, 0, null);
-//            g.drawImage(imageIcon.getImage().getScaledInstance(400, 300, Image.SCALE_DEFAULT), 0, 0, null);
+            g.drawImage(imageIcon.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
         }
     }
 }
